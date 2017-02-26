@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->foreign('user_id')->references('id')->on('users');
             $table->integer('shop_id');
             $table->foreign('shop_id')->references('id')->on('users');
+            $table->string('status', 20);
             $table->timestamps();
         });
     }
