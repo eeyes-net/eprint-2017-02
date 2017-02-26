@@ -18,25 +18,25 @@ Artisan::command('inspire', function () {
 })->describe('Display an inspiring quote');
 
 Artisan::command('admin:create', function () {
-    (new \App\User([
+    \App\User::create([
         'username' => 'root',
         'password' => bcrypt('root'),
         'name' => 'root',
         'type' => 'root',
-    ]))->save();
+    ]);
     $this->comment('"root" created.');
-    (new \App\User([
+    \App\User::create([
         'username' => 'admin',
         'password' => bcrypt('admin'),
         'name' => 'admin',
         'type' => 'admin',
-    ]))->save();
+    ]);
     $this->comment('"admin" created.');
-    (new \App\User([
+    \App\User::create([
         'username' => 'anonymous',
         'password' => '*',
         'name' => 'anonymous',
         'type' => 'anonymous',
-    ]))->save();
+    ]);
     $this->comment('"anonymous" created.');
 })->describe('Create "root", "admin" and "anonymous" user.');

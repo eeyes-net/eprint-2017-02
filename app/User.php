@@ -27,9 +27,29 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function getMeta($name, $default = null)
+    {
+        $meta = $this->metas()->where('name', $name)->first();
+        if (!$meta) {
+            return $default;
+        }
+        return unserialize($meta->value);
+    }
+
     public function metas()
     {
         return $this->hasMany(UserMeta::class);
+    }
+
+    public function setMeta($name, $value)
+    {
+        $meta = $this->metas()->where('name', $name)->first();
+        if (!$meta) {
+            $meta = new UserMeta(compact('name'));
+        }
+        $meta->value = serialize($value);
+        $this->metas()->save($meta);
+        return $meta;
     }
 
     public function logs()
