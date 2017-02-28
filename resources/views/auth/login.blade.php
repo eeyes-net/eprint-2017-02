@@ -25,6 +25,9 @@
                                 <div class="col-sm-12 col-md-4 col-md-offset-4">
                                     <input type="submit" class="btn btn-default form-control" value="登录">
                                 </div>
+                                <div class="col-sm-12 col-md-4">
+                                    <a href="{{ action('Auth\RegisterController@create') }}" class="btn">注册新账号→</a>
+                                </div>
                             </div>
                         </div>
                     </div>

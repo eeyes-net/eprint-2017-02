@@ -20,4 +20,15 @@ class OrderController extends Controller
         $order->save();
         return redirect(config('filesystems.disks.uploads.url') . '/' . $order->uploads()->first()->rel_path);
     }
+
+    public function finish($id)
+    {
+        $order = auth()->user()->shopOrders()->find($id);
+        if (!$order || $order->status !== 'downloaded') {
+            return back();
+        }
+        $order->status = 'finished';
+        $order->save();
+        return back();
+    }
 }

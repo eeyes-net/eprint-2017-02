@@ -17,6 +17,6 @@ class UsernameController extends Controller
 
     public function update()
     {
-        return request();
+        return request('username');
     }
 }

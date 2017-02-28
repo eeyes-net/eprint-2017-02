@@ -54,7 +54,11 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     });
     Route::group(['prefix' => 'password'], function () {
         Route::get('edit', 'PasswordController@edit');
-        Route::patch('/', 'PasswordControlel@update');
+        Route::patch('/', 'PasswordController@update');
+    });
+    Route::group(['prefix' => 'code'], function () {
+        Route::get('/', 'CodeController@index');
+        Route::post('/', 'CodeController@verify');
     });
     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
         Route::group(['prefix' => 'orders'], function () {

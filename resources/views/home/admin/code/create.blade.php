@@ -15,7 +15,7 @@
             </div>
             @if(isset($code))
                 <div class="col-sm-12">
-                    10分钟之内有效：{{ $code }}
+                    10分钟之内单次有效：{{ $code }}
                 </div>
             @endif
         </div>

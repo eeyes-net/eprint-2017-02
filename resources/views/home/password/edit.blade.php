@@ -7,13 +7,14 @@
             </div>
         </div>
         <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-            <form action="{{ action('Auth\RegisterController@store') }}" method="POST">
+            <form action="{{ action('Home\PasswordController@update') }}" method="POST">
                 {{ csrf_field() }}
                 {{ method_field('PATCH') }}
                 @include('auth.layouts.errors')
+                @include('layouts.success')
                 <div class="form-group">
                     <label for="password_old">原密码</label>
-                    <input type="text" class="form-control" name="password_old" id="password_old" required>
+                    <input type="password" class="form-control" name="password_old" id="password_old" required>
                 </div>
                 <div class="form-group">
                     <label for="password">新密码</label>

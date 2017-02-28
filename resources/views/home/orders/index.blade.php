@@ -21,7 +21,21 @@
                             <tr>
                                 <td>{{ $order->created_at }}</td>
                                 <td>{{ $order->shop->name }}</td>
-                                <td>{{ $order->status }}</td>
+                                <td>
+                                    @if ($order->status === 'ordered')
+                                        <div class="alert alert-warning">
+                                            文件还未下载
+                                        </div>
+                                    @elseif  ($order->status === 'finished')
+                                        <div class="alert alert-success">
+                                            订单已完成
+                                        </div>
+                                    @else
+                                        <div class="alert alert-info">
+                                            文件正在打印中
+                                        </div>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>

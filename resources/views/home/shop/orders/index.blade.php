@@ -14,7 +14,6 @@
                             <th>下单时间</th>
                             <th>用户</th>
                             <th>下载</th>
-                            <th>完成</th>
                             <th>状态</th>
                         </tr>
                     </thead>
@@ -25,13 +24,27 @@
                                 <td>{{ $order->user->name }}</td>
                                 <td>
                                     @if ($order->canDownload())
-                                        <a target="_blank" href="{{ action('Home\Shop\OrderController@download', ['id' => $order->id]) }}">下载文件</a>
+                                        <a class="btn btn-default" target="_blank" href="{{ action('Home\Shop\OrderController@download', ['id' => $order->id]) }}">下载文件</a>
                                     @else
                                         文件已失效
                                     @endif
                                 </td>
-                                <td><a target="_blank" href="{{ action('Home\Shop\OrderController@finish', ['id' => $order->id]) }}">打印完成</a></td>
-                                <td>{{ $order->status }}</td>
+                                <td>
+                                    @if ($order->status === 'ordered')
+                                        <div class="alert alert-warning">
+                                            文件还未下载
+                                        </div>
+                                    @elseif  ($order->status === 'finished')
+                                        <div class="alert alert-success">
+                                            订单已完成
+                                        </div>
+                                    @else
+                                        <form action="{{ action('Home\Shop\OrderController@finish', ['id' => $order->id]) }}" method="POST">
+                                            {{ csrf_field() }}
+                                            <input class="btn btn-default" type="submit" value="提醒用户打印已完成">
+                                        </form>
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
