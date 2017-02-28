@@ -35,16 +35,15 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
         Route::get('edit', 'InfoController@edit');
         Route::patch('/', 'InfoController@update');
     });
-//     Route::group(['prefix' => 'uploads'], function () {
-//         Route::get('/', '');
-//         Route::get('create', '');
-//         Route::post('/', '');
-//     });
+    Route::group(['prefix' => 'uploads'], function () {
+        Route::get('/', 'UploadController@index');
+        Route::get('create', 'UploadController@create');
+        Route::post('/', 'UploadController@store');
+    });
     Route::group(['prefix' => 'orders'], function () {
         Route::get('/', 'OrderController@index');
-        // Route::get('create', '');
-        // Route::post('/', '');
-        // Route::get('{id}', '');
+        Route::get('create', 'OrderController@create');
+        Route::post('/', 'OrderController@store');
     });
     Route::group(['prefix' => 'username'], function () {
         Route::get('/', 'UsernameController@index'); // 修改用户名页面
@@ -57,24 +56,21 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
         Route::get('edit', 'PasswordController@edit');
         Route::patch('/', 'PasswordControlel@update');
     });
-//     Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
-//         Route::get('/', '');
-//         Route::group(['prefix' => 'orders'], function () {
-//             Route::get('/', '');
-//             Route::get('{id}', '');
-//             Route::post('{id}/download', '');
-//             Route::patch('{id}', '');
-//         });
-//     });
-//     Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
-//         Route::get('/', '');
-//         Route::group(['prefix' => 'users'], function () {
-//             Route::get('/', '');
-//         });
-//         Route::group(['prefix' => 'code'], function () {
-//             Route::get('/', '');
-//             Route::get('create', '');
-//             Route::post('/', '');
-//         });
-//     });
+    Route::group(['prefix' => 'shop', 'namespace' => 'Shop'], function () {
+        Route::group(['prefix' => 'orders'], function () {
+            Route::get('/', 'OrderController@index');
+            Route::get('{id}/download', 'OrderController@download');
+            Route::post('{id}/finish', 'OrderController@finish');
+        });
+    });
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function () {
+        Route::group(['prefix' => 'users'], function () {
+            Route::get('/', 'UserController@index');
+            Route::patch('{id}', 'UserController@update');
+        });
+        Route::group(['prefix' => 'code'], function () {
+            Route::get('/', 'CodeController@create');
+            Route::post('/', 'CodeController@store');
+        });
+    });
 });

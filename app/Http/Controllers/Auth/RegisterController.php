@@ -38,6 +38,6 @@ class RegisterController extends Controller
             'type' => 'user',
         ]);
         Auth::login($user);
-        return redirect('/');
+        return redirect(route('home'));
     }
 }

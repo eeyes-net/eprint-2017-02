@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-
 class UsernameController extends Controller
 {
     public function index()

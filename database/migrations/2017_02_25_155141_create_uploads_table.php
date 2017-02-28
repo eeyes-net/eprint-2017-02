@@ -17,6 +17,9 @@ class CreateUploadsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->text('name')->comment('原始文件名');
+            $table->bigInteger('size')->comment('文件字节数');
+            $table->text('rel_path')->comment('文件在上传文件夹中的位置');
             $table->timestamps();
         });
     }

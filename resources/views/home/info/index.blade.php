@@ -12,11 +12,11 @@
                     <tbody>
                         <tr>
                             <td>账号</td>
-                            <td>{{ $user->username }}</td>
+                            <td>{{ $user->username }} <a href="{{ action('Home\UsernameController@index') }}">点击此处修改账号</a></td>
                         </tr>
                         <tr>
                             <td>密码</td>
-                            <td><a href="{{ action('Home\\PasswordController@edit') }}">点击此处修改密码</a></td>
+                            <td><a href="{{ action('Home\PasswordController@edit') }}">点击此处修改密码</a></td>
                         </tr>
                         <tr>
                             <td>昵称</td>
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
-                <a class="form-control btn btn-default" href="{{ action('Home\\InfoController@edit') }}">修改个人信息</a>
+                <a class="form-control btn btn-default" href="{{ action('Home\InfoController@edit') }}">修改个人信息</a>
             </div>
         </div>
     </div>

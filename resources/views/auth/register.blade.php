@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12 col-md-6 col-md-offset-3 col-lg-4 col-lg-offset-4">
-                <form action="{{ action('Auth\\RegisterController@store') }}" method="POST">
+                <form action="{{ action('Auth\RegisterController@store') }}" method="POST">
                     {{ csrf_field() }}
                     @include('auth.layouts.errors')
                     <div class="form-group">

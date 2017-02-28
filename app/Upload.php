@@ -3,9 +3,25 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\UploadedFile;
 
 class Upload extends Model
 {
+
+    protected $fillable = ['name', 'size', 'rel_path'];
+
+    public static function createFromUpload(UploadedFile $file)
+    {
+        $rel_path = date('Ym/d');
+        $filename = date('Y_m_d_His') . '_' . $file->getClientOriginalName();
+        $file->storeAs($rel_path, $filename, 'uploads');
+        return new self([
+            'name' => $file->getClientOriginalName(),
+            'size' => $file->getClientSize(),
+            'rel_path' => $rel_path . '/' . $filename,
+        ]);
+    }
+
     public function user()
     {
         return $this->belongsTo(User::class);

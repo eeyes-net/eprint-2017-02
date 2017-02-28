@@ -8,5 +8,9 @@ class Controller extends BaseController
 {
     public function __construct()
     {
+        dd(auth()->user());
+        if (!auth()->user()->isShop()) {
+            redirect(route('home'));
+        }
     }
 }

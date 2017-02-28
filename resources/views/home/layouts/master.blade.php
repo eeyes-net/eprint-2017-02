@@ -5,10 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>e快印</title>
+    <title>{{ config('app.name') }}</title>
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
     <style>
+        body {
+            padding-top: 50px;
+        }
         @media (min-width: 768px) {
             .sidebar {
                 position: fixed;

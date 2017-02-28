@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers\Home;
 
-use App\Http\Controllers\Controller;
-
 class InfoController extends Controller
 {
     public function index()
@@ -24,6 +22,6 @@ class InfoController extends Controller
         $user->name = request('name');
         $user->save();
         $user->setMeta('contact', request('contact'));
-        return redirect(action('Home\\InfoController@index'));
+        return redirect(action('Home\InfoController@index'));
     }
 }

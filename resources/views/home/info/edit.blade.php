@@ -15,11 +15,11 @@
                         <tbody>
                             <tr>
                                 <td>账号</td>
-                                <td><a href="{{ action('Home\\UsernameController@index') }}">点击此处修改账号</a></td>
+                                <td>{{ $user->username }} <a href="{{ action('Home\UsernameController@index') }}">点击此处修改账号</a></td>
                             </tr>
                             <tr>
                                 <td>密码</td>
-                                <td><a href="{{ action('Home\\PasswordController@edit') }}">点击此处修改密码</a></td>
+                                <td><a href="{{ action('Home\PasswordController@edit') }}">点击此处修改密码</a></td>
                             </tr>
                             <tr>
                                 <td>昵称</td>

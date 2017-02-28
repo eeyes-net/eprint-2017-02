@@ -27,6 +27,26 @@ class User extends Authenticatable
         'password',
     ];
 
+    public static function anonymous()
+    {
+        return self::ofType('anonymous')->first();
+    }
+
+    public static function admins()
+    {
+        return self::ofType('admin')->get();
+    }
+
+    public static function users()
+    {
+        return self::ofType('user')->get();
+    }
+
+    public static function shops()
+    {
+        return self::ofType('shop')->get();
+    }
+
     public function getMeta($name, $default = null)
     {
         $meta = $this->metas()->where('name', $name)->first();
@@ -70,5 +90,30 @@ class User extends Authenticatable
     public function orders()
     {
         return $this->hasMany(Order::class);
+    }
+
+    public function shopOrders()
+    {
+        return $this->hasMany(Order::class, 'shop_id');
+    }
+
+    public function scopeOfType($query, $type)
+    {
+        return $query->where('type', $type);
+    }
+
+    public function isShop()
+    {
+        return ($this->type === 'shop');
+    }
+
+    public function isAdmin()
+    {
+        return ($this->type === 'admin');
+    }
+
+    public function isRoot()
+    {
+        return ($this->type === 'root');
     }
 }
